@@ -2,6 +2,8 @@
 
 import os, subprocess as sub, urllib, urllib2
 
+comment_tpl = 'Git commit {hash}: {msg}'
+
 def asana_query(asana_key, path, data, method='POST'):
     req = urllib2.Request('https://app.asana.com/api/1.0/' + '/'.join(path), urllib.urlencode(data))
     req.add_header('Authorization', 'Basic ' + (asana_key + ':').encode('base64').rstrip())
@@ -16,7 +18,7 @@ asana_key = os.environ['ASANA_KEY']
 
 commit = sub.check_output(['git', 'log',  '-1',  'HEAD',  '--pretty=oneline']).split(' ')
 commit_id, comment = commit[0], ' '.join(commit[1:])
-asana_query(asana_key, ['tasks', str(task_id), 'stories'], {'text': 'Git commit {0}: {1}'.format(commit_id[:6], comment)})
+asana_query(asana_key, ['tasks', str(task_id), 'stories'], {'text': comment_tpl.format(hash=commit_id[:6], msg=comment)})
 print 'Added comment to Asana'
 
 if check_if_in(('[fixed]', '[closed]', '[completed]'), comment):
