@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export ASANA_TASK_ID=$1
+
