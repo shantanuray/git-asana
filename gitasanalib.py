@@ -13,8 +13,7 @@
 #     quit(-1)
 # config_filename = '/Users/chico/DevProjects/git-asana/.git-asana-config'
 # asana_url = 'https://app.asana.com/api/1.0/'
-
-import os, json, sys, urllib2
+# import os, json, sys, urllib2
 
 def asana_query(asana_key, path, data=None, method=None):
     if type(path) is not str:
@@ -44,7 +43,7 @@ def take_stdin(field_name, field_prompt=None):
     if field_prompt is None:
         inp = raw_input('Enter value for ' + field_name + ': ')
     else:
-        inp = raw_input('Enter value for ' + field_name + '. If same as ' + field_prompt + 'press Enter, else type name: ')
+        inp = raw_input('Enter value for ' + field_name + '. If same as <' + field_prompt + '> press Enter, else type name: ')
         if inp == '':
             inp = field_prompt
     if inp == '':
