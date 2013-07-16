@@ -14,9 +14,8 @@
 # config_filename = '/Users/chico/DevProjects/git-asana/.git-asana-config'
 # asana_url = 'https://app.asana.com/api/1.0/'
 
-import os, json, sys, urllib2
-
 def asana_query(asana_key, path, data=None, method=None):
+    import json, urllib2
     if type(path) is not str:
         path = '/'.join(path)
     url = asana_url + path
@@ -56,7 +55,8 @@ def take_stdin(field_name, field_prompt=None):
 def config_create(project=None, workspace=None):
     project = take_stdin('project', project)
     workspace = take_stdin('workspace', workspace)
-    return json.dumps({'project' : project, 'workspace' : workspace})
+    cfg = {'project' : project, 'workspace' : workspace}
+    return cfg
 
 def workspace_id_query(workspace):
     workspaces = asana_query(asana_key, 'workspaces')
