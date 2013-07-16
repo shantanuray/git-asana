@@ -58,7 +58,7 @@ def config_create(project=None, workspace=None):
     cfg = {'project' : project, 'workspace' : workspace}
     return cfg
 
-def workspace_id_query(workspace):
+def workspace_id_query(asana_key, workspace):
     workspaces = asana_query(asana_key, 'workspaces')
     workspace_id = find_id(workspaces['data'], workspace)
     if not workspace_id:
@@ -67,7 +67,7 @@ def workspace_id_query(workspace):
     else:
         return workspace_id[0]
 
-def project_id_query(workspace_id, project):
+def project_id_query(asana_key, workspace_id, project):
     projects = asana_query(asana_key, ['workspaces', str(workspace_id), 'projects'])
     project_id = find_id(projects['data'], project)
     if not project_id:
