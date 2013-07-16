@@ -76,3 +76,7 @@ def project_id_query(asana_key, workspace_id, project):
         return -1
     else:
         return project_id[0]
+
+def task_query(asana_key, project_id):
+    tasks = asana_query(asana_key, 'projects/' + project_id + '/tasks?assignee=me')
+    return tasks
