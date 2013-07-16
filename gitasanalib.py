@@ -12,7 +12,8 @@
 #     print 'Asana key is not set!'
 #     quit(-1)
 # config_filename = '/Users/chico/DevProjects/git-asana/.git-asana-config'
-# asana_url = 'https://app.asana.com/api/1.0/'
+
+asana_url = 'https://app.asana.com/api/1.0/'
 
 def asana_query(asana_key, path, data=None, method=None):
     import json, urllib2
